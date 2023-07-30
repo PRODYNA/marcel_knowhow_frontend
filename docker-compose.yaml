@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  marcel_knowhhow_frontend:
-    container_name: marcel_knowhhow_frontend
-    image: jnicontainerregistry.azurecr.io/marcel_knowhhow_frontend
+  marcel_knowhow_frontend:
+    container_name: marcel_knowhow_frontend
+    image: marcel_knowhow_frontend
     ports:
       - 80:80
     restart: unless-stopped 

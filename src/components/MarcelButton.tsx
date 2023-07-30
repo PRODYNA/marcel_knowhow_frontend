@@ -16,7 +16,9 @@ const MarcelButton = () => {
 		let newValue = "<no response";
 		try {
 			setShowBackdrop(true);
-			const respone = await fetch('https://marcel-knowhow-backend3.mangowater-dae365c4.westus2.azurecontainerapps.io');
+			const endpoint = `${import.meta.env.VITE_APP_API_URL}`;
+			console.log(`Calling server at "${endpoint}"`);
+			const respone = await fetch(endpoint);
 			const json: unknown = await respone.json();
 			const serverResponse = json as ServerResponse;
 			const value = serverResponse.Hello;

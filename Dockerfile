@@ -1,11 +1,15 @@
 # Step 1: Build the app in a node.js environment
-FROM node:14 as build
+FROM node:18 as build
 
 # Set working directory
 WORKDIR /app
 
 # Add `node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
+
+# Set VITE_APP_API_URL variable
+ARG VITE_APP_API_URL
+ENV VITE_APP_API_URL ${VITE_APP_API_URL}
 
 # Install app dependencies
 COPY package*.json ./

@@ -19,6 +19,26 @@ It is a React Frontend with Material UI and can be exectuted with Vite.
 - Hit 'q' to stop the dev server.
 
 # Docker image
-Run `docker buildx build --platform linux/amd64 -t jnicontainerregistry.azurecr.io/marcel_knowhhow_frontend .` in the local build directory.
-Use `docker push jnicontainerregistry.azurecr.io/marcel_knowhhow_frontend:latest` to push the image to the registry.
+## Local Docker Evnironment
+Build the docker image for local docker compose environment with:
+```bash
+BACKEND_ENDPOINT=http://localhost:8080
+docker buildx build \
+   --build-arg VITE_APP_API_URL=$BACKEND_ENDPOINT \
+   -t marcel_knowhow_frontend \
+   .
+```
+
+## Image for Azure Container Registry and Azure Container Apps Service
+Build the docker image with:
+```bash
+BACKEND_ENDPOINT=https://marcel-knowhow-backend3.mangowater-dae365c4.westus2.azurecontainerapps.io
+docker buildx build \
+   --platform linux/amd64 \
+   --build-arg VITE_APP_API_URL=$BACKEND_ENDPOINT \
+   -t jnicontainerregistry.azurecr.io/marcel_knowhow_frontend \
+   .
+```
+
+Use `docker push jnicontainerregistry.azurecr.io/marcel_knowhow_frontend:latest` to push the image to the registry.
 
