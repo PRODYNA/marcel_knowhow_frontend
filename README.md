@@ -10,10 +10,9 @@ Marcel Knowhow Frontend Project
 ===============================
 
 This project holds the frontend for the Marcel Knowhow session.
-It is a React Frontend with Material UI and can be exectuted with Vite.
+It is a responsive React Frontend with Material UI and can be exectuted with Vite.
 
 # Local Development Setup
-
 
 ## Dependencies
 - If you have not pnpm installed, please do so with `npm install -g pnpm`.
