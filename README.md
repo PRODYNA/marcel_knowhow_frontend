@@ -23,7 +23,7 @@ It is a responsive React Frontend with Material UI and can be exectuted with Vit
 
 Provide a local `.env` file with the following content to set the local backend endpoint:
 ```
-VITE_APP_API_URL=http://localhost:8080
+VITE_APP_API_URL=http://localhost:8000
 ```
 This file is ignored by git.
 
