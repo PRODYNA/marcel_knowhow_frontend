@@ -1,20 +1,24 @@
-import React from 'react';
 import { Typography, Container, Button, Grid } from '@mui/material';
+
 import QuizState from '../domain/QuizState';
 import quizMaster from '../services/QuizMaster';
-
 
 type QuestionProps = {
 	quizState: QuizState;
 	setQuizState: React.Dispatch<React.SetStateAction<QuizState>>;
+	indicateAnswer: (correct: boolean) => void;
 	alertError: (error: string) => void;	
 	children?: React.ReactNode;
 }
 
 
-const Question: React.FC<QuestionProps> = ( {quizState, setQuizState} ) => {
+const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAnswer: indicateLastAnswer} ) => {
 	
 	const answerQuestion = async ( yesAnswered: boolean): Promise<void> => {
+		const answerCorrect = quizMaster.checkAnswer(quizState, yesAnswered);
+		indicateLastAnswer(answerCorrect);
+
+		console.log(`Question.answerQuestion(${yesAnswered})`);
 		quizState.quizAnswers[quizState.questionIndex] = yesAnswered;
 		const answersCopy = quizMaster.provideAnswersCopy(quizState);
 
@@ -41,11 +45,11 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState} ) => {
 
 	return (
 		<>
-			<Container maxWidth="sm">
+			<Container maxWidth="sm" >
 				<Typography variant="h2" align="center" color="textPrimary" gutterBottom>
 					Question No. {quizState.questionIndex + 1}
 				</Typography>
-				<Typography variant="h5" align="center" color="textSecondary" paragraph>
+				<Typography variant="h5" align="center" color="textSecondary" paragraph >
 					{quizState.quizQuestions[quizState.questionIndex].question}
 				</Typography>
 
@@ -76,4 +80,4 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState} ) => {
 	)
 }
 
-export default Question
+export default Question;

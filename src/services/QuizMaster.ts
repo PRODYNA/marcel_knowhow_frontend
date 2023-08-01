@@ -40,7 +40,14 @@ const quizMaster = {
 			quizState.quizAnswers
 		);
 		return ratio;
+	},
+
+	checkAnswer(quizState: QuizState, yesAnswered: boolean) {
+		const currentQuestion = quizState.quizQuestions[quizState.questionIndex];
+		const correctness = currentQuestion.yes_answer === yesAnswered;
+		return correctness;
 	}
+
 }
 
 export default quizMaster;
