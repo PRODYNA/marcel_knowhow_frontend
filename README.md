@@ -43,10 +43,20 @@ docker buildx build \
    .
 ```
 
+## Continuous Integration and Devlivery with GitHub Actions
+The project comes with a GitHub Actions workflow to build and push the image to the Azure Container Registry (see `./.github/workflows/frontend.yaml`).
+
+To use push a new image to the Azure Container Registry set the three secrets in Github:
+- REGISTRY_LOGIN_SERVER
+- REGISTRY_USERNAME
+- REGISTRY_PASSWORD
+
+![ACR Secrets](docs/Github_actions_secrets.png)
+
 ## Image for Azure Container Registry and Azure Container Apps Service
 Build the docker image with:
 ```bash
-BACKEND_ENDPOINT=https://marcel-knowhow-backend3.mangowater-dae365c4.westus2.azurecontainerapps.io
+BACKEND_ENDPOINT=https://marcel-knowhow-backend.wonderfulbeach-9704a689.westus2.azurecontainerapps.io/
 docker buildx build \
    --platform linux/amd64 \
    --build-arg VITE_APP_API_URL=$BACKEND_ENDPOINT \
