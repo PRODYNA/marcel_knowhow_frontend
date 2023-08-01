@@ -3,43 +3,58 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import { Container, Typography, CssBaseline, Grid, Button, } from '@mui/material';
+import React from 'react';
+import { Alert, AlertTitle, CssBaseline } from '@mui/material';
 import JniAppBar from './components/JniAppBar';
-
+import StartQuiz from './components/StartQuiz';
+import RenderSwitch from './components/RenderSwitch';
+import QuizState from './domain/QuizState';
+import Question from './components/Question';
+import Results from './components/Results';
 
 const App = () => {
+
+	const [quizState, setQuizState] = React.useState<QuizState>(new QuizState());
+	const [showAlert, setShowAlert] = React.useState<boolean>(false);
+	const [errorMessage, setErrorMessage] = React.useState<string>();
+
+	const alertError = (error: string) => {
+		setErrorMessage(error);
+		setShowAlert(true);
+	}
+
 	return (
 		<>
 			<CssBaseline />
 			<JniAppBar />
+			<RenderSwitch render={showAlert}>
+				<Alert severity="error">
+					<AlertTitle>Error</AlertTitle>
+					{errorMessage}
+				</Alert>
+			</RenderSwitch>
 			<main>
-				<div>
-					<Container maxWidth="sm">
-						<Typography variant="h2" align="center" color="textPrimary" gutterBottom>
-							Ja oder Nein?
-						</Typography>
-						<Typography variant="h5" align="center" color="textSecondary" paragraph>
-							Hier wird in irgendeiner Form eine Frage gestellt, die mit Ja oder Nein
-							beantwortet werden kann. 
-							Mit den folgenden Buttons erfolgt die Beantwortung.
-						</Typography>
-
-						<div>
-							<Grid container spacing={2} justifyContent="center">
-								<Grid item>
-									<Button variant="contained" color="primary">
-										Ja
-									</Button>
-								</Grid>
-								<Grid item>
-									<Button variant="outlined" color="primary">
-										Nein
-									</Button>
-								</Grid>
-							</Grid>
-						</div>
-					</Container>
-				</div>
+				<RenderSwitch render={quizState.showStart}>
+					<StartQuiz 
+						quizState={quizState} 
+						setQuizState={setQuizState} 
+						alertError={alertError}
+					/>
+				</RenderSwitch>
+				<RenderSwitch render={quizState.showQuestion}>
+					<Question 
+						quizState={quizState} 
+						setQuizState={setQuizState} 
+						alertError={alertError}
+					/>
+				</RenderSwitch>
+				<RenderSwitch render={quizState.showResult}>
+					<Results 
+						quizState={quizState} 
+						setQuizState={setQuizState}
+						alertError={alertError}
+					/>
+				</RenderSwitch>
 			</main>
 		</>
 	)

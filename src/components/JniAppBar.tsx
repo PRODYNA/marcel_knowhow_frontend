@@ -1,6 +1,5 @@
 import { Typography, AppBar, Toolbar, Box } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import MarcelButton from './MarcelButton';
 
 const JniAppBar = () => {
 	return (
@@ -16,11 +15,8 @@ const JniAppBar = () => {
 						<Box display="flex">
 							<MenuBookIcon style={{ paddingRight: '3px'}}/>
 							<Typography variant="h6">
-								Knowhow Session
+								Marcel Knowhow Session
 							</Typography>
-						</Box>
-						<Box display="flex">
-							<MarcelButton />
 						</Box>
 					</Box>
 				</Toolbar>

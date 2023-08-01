@@ -12,11 +12,25 @@ Marcel Knowhow Frontend Project
 This project holds the frontend for the Marcel Knowhow session.
 It is a React Frontend with Material UI and can be exectuted with Vite.
 
-# Setup and Start
+# Local Development Setup
+
+
+## Dependencies
 - If you have not pnpm installed, please do so with `npm install -g pnpm`.
 - Install all project dependencies with `pnpm install`.
-- Run the project with `pnpm run dev`.
-- Hit 'q' to stop the dev server.
+
+
+## Local Vite Development Server
+
+Provide a local `.env` file with the following content to set the local backend endpoint:
+```
+VITE_APP_API_URL=http://localhost:8080
+```
+This file is ignored by git.
+
+Afterwards run the server with `pnpm run dev`.
+Hit 'q' to stop the dev server.
+
 
 # Docker image
 ## Local Docker Evnironment
@@ -40,5 +54,5 @@ docker buildx build \
    .
 ```
 
-Use `docker push jnicontainerregistry.azurecr.io/marcel_knowhow_frontend:latest` to push the image to the registry.
+Use `docker push jnicontainerregistry.azurecr.io/marcel_knowhow_frontend:latest` to push the image to the Azure Container Registry.
 
