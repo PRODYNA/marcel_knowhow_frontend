@@ -36,7 +36,7 @@ Hit 'q' to stop the dev server.
 ## Local Docker Evnironment
 Build the docker image for local docker compose environment with:
 ```bash
-BACKEND_ENDPOINT=http://localhost:8080
+BACKEND_ENDPOINT=http://localhost:8000
 docker buildx build \
    --build-arg VITE_APP_API_URL=$BACKEND_ENDPOINT \
    -t marcel_knowhow_frontend \
@@ -66,3 +66,10 @@ docker buildx build \
 
 Use `docker push jnicontainerregistry.azurecr.io/marcel_knowhow_frontend:latest` to push the image to the Azure Container Registry.
 
+# Azure Container Apps Service
+- Set the Container app name to `marcel-knowhow-frontend`.
+- Choose the latest backend image from the AZR.
+- Select **0.25 vCPU, 0.5 GB RAM** for CPU and Memory.
+- Enable Ingress
+- Accept trafffic from anywhere
+- Set the Target port to `80`
