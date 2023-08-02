@@ -17,7 +17,6 @@ const Results: React.FC<ResultsProps> = ( {quizState, setQuizState, alertError} 
 	const [correctnessRatio, setCorrectnessRatio] = React.useState<number>(0);
 	
 	React.useEffect(() => {
-		
 		if (quizMaster.MAX_QUESTIONS === quizState.questionIndex + 1) {
 			quizState.questionIndex = -1;
 			console.log("Sending results to server...");
@@ -60,7 +59,7 @@ const Results: React.FC<ResultsProps> = ( {quizState, setQuizState, alertError} 
 					Results
 				</Typography>
 				<Typography variant="h5" align="center" color="textSecondary" paragraph>
-					You answered {correctnessRatio*100}% correct!
+					You answered {correctnessRatio*100}% correctly!
 				</Typography>
 
 				<div>
