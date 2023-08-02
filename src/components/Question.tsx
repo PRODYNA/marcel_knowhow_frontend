@@ -2,6 +2,7 @@ import { Typography, Container, Button, Grid } from '@mui/material';
 
 import QuizState from '../domain/QuizState';
 import quizMaster from '../services/QuizMaster';
+import { useEffect, useState } from 'react';
 
 type QuestionProps = {
 	quizState: QuizState;
@@ -14,13 +15,22 @@ type QuestionProps = {
 
 const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAnswer: indicateLastAnswer} ) => {
 	
+    const [startTime, setStartTime] = useState<number>(Date.now()); // Add this state variable
+
+    useEffect(() => {
+        setStartTime(Date.now()); // Update start time whenever the question changes
+    }, [quizState.questionIndex]);	
+
 	const answerQuestion = async ( yesAnswered: boolean): Promise<void> => {
+		const endTime = Date.now();
+		const timeTaken = endTime - startTime; // Time taken in milliseconds
+
 		const answerCorrect = quizMaster.checkAnswer(quizState, yesAnswered);
 		indicateLastAnswer(answerCorrect);
 
 		console.log(`Question.answerQuestion(${yesAnswered})`);
 		quizState.quizAnswers[quizState.questionIndex] = yesAnswered;
-		const answersCopy = quizMaster.provideAnswersCopy(quizState);
+		quizState.reactTimes[quizState.questionIndex] = timeTaken;
 
 		const lastQuestionReached = quizState.questionIndex === (quizMaster.MAX_QUESTIONS-1);
 		if (lastQuestionReached === false) {
@@ -28,7 +38,7 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAn
 				return {
 					...prevState,
 					questionIndex: prevState.questionIndex + 1,
-					answers: answersCopy,
+					answers: prevState.quizAnswers,
 				}
 			});
 		} else {
@@ -37,7 +47,8 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAn
 					...prevState,
 					showQuestion: false,
 					showResult: true,
-					answers: answersCopy,
+					answers: prevState.quizAnswers,
+					reactTimes: prevState.reactTimes,
 				}
 			});
 		}

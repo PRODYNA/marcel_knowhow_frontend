@@ -29,15 +29,11 @@ const quizMaster = {
 		return selectedQuestions;
 	},
 
-	provideAnswersCopy(quizState: QuizState): boolean[] {
-		const answersCopy = [...quizState.quizAnswers];
-		return answersCopy;
-	},
-
 	publishResultsAsync: async (quizState: QuizState): Promise<number> => {
 		const ratio = await quizBackend.postResultsAsync(
 			quizState.quizQuestions, 
-			quizState.quizAnswers
+			quizState.quizAnswers,
+			quizState.reactTimes,
 		);
 		return ratio;
 	},
