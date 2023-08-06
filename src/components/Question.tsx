@@ -22,13 +22,9 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAn
 
     useEffect(() => {
         setStartTime(Date.now()); // Update start time whenever the question changes
-
-		(async () => {
-			const questionId = quizState.quizQuestions[quizState.questionIndex].id;
-			const src = `../assets/ai_generated/illustration_${questionId}.png`;
-			const imageModule = await import(/* @vite-ignore */ src);
-			setIllustrationSrc(imageModule.default);
-		})();
+		const questionId = quizState.quizQuestions[quizState.questionIndex].id;
+		const src = `/img/ai_gen/illustration_${questionId}.png`;
+		setIllustrationSrc(src);
     }, [quizState.questionIndex]);	
 
 	const answerQuestion = async ( yesAnswered: boolean): Promise<void> => {
