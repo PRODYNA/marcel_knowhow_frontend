@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Container, Button, Grid, Backdrop, CircularProgress } from '@mui/material';
 import QuizState from '../domain/QuizState';
 import quizMaster from '../services/QuizMaster';
-
+import testImage from '../assets/ai_generated/illustration_1.png';
 
 type StartQuizProps = {
 	quizState: QuizState;
@@ -65,6 +65,7 @@ const StartQuiz: React.FC<StartQuizProps> = ( {setQuizState, alertError} ) => {
 						</Grid>
 					</Grid>
 				</div>
+				<img src={testImage} alt="test" />
 			</Container>
 
 			<Backdrop

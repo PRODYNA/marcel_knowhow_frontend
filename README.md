@@ -16,7 +16,7 @@ It is a responsive React Frontend with Material UI and can be exectuted with Vit
 This project depends indirectly on the main project 
 [Marcel Knowhow Main](https://github.com/PRODYNA/marcel_knowhow_main). 
 The main project holds a script to create and distribute AI generated images to this frontend 
-project (into the folder `./publice/images/ai_generated`).
+project (into the folder `./assets/images/ai_generated`).
 
 # Local Development Setup
 

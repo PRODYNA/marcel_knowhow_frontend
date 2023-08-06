@@ -11,6 +11,7 @@ import RenderSwitch from './components/RenderSwitch';
 import QuizState from './domain/QuizState';
 import Question from './components/Question';
 import Results from './components/Results';
+import Footer from './components/Footer';
 
 const INDICATE_RIGHT_COLOR = 'green';
 const INDICATE_WRONG_COLOR = 'red';
@@ -88,6 +89,10 @@ const App = () => {
 					/>
 				</RenderSwitch>
 			</main>
+			<footer>
+				<Footer />
+			</footer>
+
 		</>
 	)
 }
