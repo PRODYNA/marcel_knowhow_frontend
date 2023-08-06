@@ -1,8 +1,10 @@
-import { Typography, Container, Button, Grid } from '@mui/material';
+import { Typography, Container, Button, Grid, Box } from '@mui/material';
+import { useEffect, useState } from 'react';
+
+// import illustrationImage from '../assets/ai_generated/illustration_1.png';
 
 import QuizState from '../domain/QuizState';
 import quizMaster from '../services/QuizMaster';
-import { useEffect, useState } from 'react';
 
 type QuestionProps = {
 	quizState: QuizState;
@@ -16,9 +18,17 @@ type QuestionProps = {
 const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAnswer: indicateLastAnswer} ) => {
 	
     const [startTime, setStartTime] = useState<number>(Date.now()); // Add this state variable
+	const [illustrationSrc, setIllustrationSrc] = useState<string>("");
 
     useEffect(() => {
         setStartTime(Date.now()); // Update start time whenever the question changes
+
+		(async () => {
+			const questionId = quizState.quizQuestions[quizState.questionIndex].id;
+			const src = `../assets/ai_generated/illustration_${questionId}.png`;
+			const imageModule = await import(/* @vite-ignore */ src);
+			setIllustrationSrc(imageModule.default);
+		})();
     }, [quizState.questionIndex]);	
 
 	const answerQuestion = async ( yesAnswered: boolean): Promise<void> => {
@@ -60,7 +70,16 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAn
 				<Typography variant="h2" align="center" color="textPrimary" gutterBottom>
 					Question No. {quizState.questionIndex + 1}
 				</Typography>
-				<Typography variant="h5" align="center" color="textSecondary" paragraph >
+				<Box display="flex" justifyContent="center">
+				<img src={illustrationSrc} alt="test" style={{ width: '512px' }}/>
+				</Box>
+				<Typography 
+					variant="h5" 
+					align="center" 
+					color="textSecondary" 
+					paragraph 
+					sx={{ maxWidth: '512px', margin: '0 auto' }}  // The margin centers the Typography horizontally
+				>
 					{quizState.quizQuestions[quizState.questionIndex].question}
 				</Typography>
 
