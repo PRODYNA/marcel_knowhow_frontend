@@ -67,7 +67,7 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAn
 					Question No. {quizState.questionIndex + 1}
 				</Typography>
 				<Box display="flex" justifyContent="center">
-				<img src={illustrationSrc} alt="test" style={{ width: '512px' }}/>
+				<img src={illustrationSrc} alt="test" style={{ maxWidth: '100%' }}/>
 				</Box>
 				<Typography 
 					variant="h5" 

@@ -65,7 +65,7 @@ const App = () => {
 				}}
 			/>
 
-			<main>
+			<main style={{ paddingBottom: '70px' }}> {/* Reserve extra space to avoid footer conflict*/}
 				<RenderSwitch render={quizState.showStart}>
 					<StartQuiz 
 						quizState={quizState} 
@@ -92,7 +92,6 @@ const App = () => {
 			<footer>
 				<Footer />
 			</footer>
-
 		</>
 	)
 }
