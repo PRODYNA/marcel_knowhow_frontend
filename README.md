@@ -12,6 +12,12 @@ Marcel Knowhow Frontend Project
 This project holds the frontend for the Marcel Knowhow session.
 It is a responsive React Frontend with Material UI and can be exectuted with Vite.
 
+The frontend is responsive for mobile devices and desktops.
+
+<img src="docs/marcel_desktop.png" width="60%">
+<img src="docs/marcel_mobile.jpeg" width="30%">
+
+
 # Dependency to Main Project
 This project depends indirectly on the main project 
 [Marcel Knowhow Main](https://github.com/PRODYNA/marcel_knowhow_main). 
