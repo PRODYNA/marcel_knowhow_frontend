@@ -64,7 +64,7 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAn
 		<>
 			<Container maxWidth="sm" >
 				<Typography variant="h2" align="center" color="textPrimary" gutterBottom>
-					Question No. {quizState.questionIndex + 1}
+					Question {quizState.questionIndex + 1}
 				</Typography>
 				<Box display="flex" justifyContent="center">
 				<img src={illustrationSrc} alt="test" style={{ maxWidth: '100%' }}/>
