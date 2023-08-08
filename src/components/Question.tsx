@@ -1,10 +1,9 @@
 import { Typography, Container, Button, Grid, Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-// import illustrationImage from '../assets/ai_generated/illustration_1.png';
-
 import QuizState from '../domain/QuizState';
 import quizMaster from '../services/QuizMaster';
+
 
 type QuestionProps = {
 	quizState: QuizState;
@@ -13,7 +12,6 @@ type QuestionProps = {
 	alertError: (error: string) => void;	
 	children?: React.ReactNode;
 }
-
 
 const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAnswer: indicateLastAnswer} ) => {
 	
@@ -34,7 +32,11 @@ const Question: React.FC<QuestionProps> = ( {quizState, setQuizState, indicateAn
 		const answerCorrect = quizMaster.checkAnswer(quizState, yesAnswered);
 		indicateLastAnswer(answerCorrect);
 
-		console.log(`Question.answerQuestion(${yesAnswered})`);
+		// Hint: 
+		// It is okay to change the values in the array directly and later on repass the array
+		// as prevState.quizAnswers / prevState.reactTimes to setQuizState since it does not
+		// change the reference of the array (respectively adds or removes elements)
+		// 
 		quizState.quizAnswers[quizState.questionIndex] = yesAnswered;
 		quizState.reactTimes[quizState.questionIndex] = timeTaken;
 
